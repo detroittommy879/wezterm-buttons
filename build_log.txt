@@ -1,0 +1,205 @@
+warning: hiding a lifetime that's elided elsewhere is confusing
+   --> filedescriptor\src\windows.rs:324:18
+    |
+324 |     fn as_socket(&self) -> BorrowedSocket {
+    |                  ^^^^^     ^^^^^^^^^^^^^^ the same lifetime is hidden here
+    |                  |
+    |                  the lifetime is elided here
+    |
+    = help: the same lifetime is referred to in inconsistent ways, making the signature confusing
+    = note: `#[warn(mismatched_lifetime_syntaxes)]` on by default
+help: use `'_` for type paths
+    |
+324 |     fn as_socket(&self) -> BorrowedSocket<'_> {
+    |                                          ++++
+
+warning: `filedescriptor` (lib) generated 1 warning (run `cargo fix --lib -p filedescriptor` to apply 1 suggestion)
+warning: hiding a lifetime that's elided elsewhere is confusing
+   --> termwiz\src\terminal\windows.rs:773:27
+    |
+773 |     fn probe_capabilities(&mut self) -> Option<ProbeCapabilities> {
+    |                           ^^^^^^^^^            ^^^^^^^^^^^^^^^^^ the same lifetime is hidden here
+    |                           |
+    |                           the lifetime is elided here
+    |
+    = help: the same lifetime is referred to in inconsistent ways, making the signature confusing
+    = note: `#[warn(mismatched_lifetime_syntaxes)]` on by default
+help: use `'_` for type paths
+    |
+773 |     fn probe_capabilities(&mut self) -> Option<ProbeCapabilities<'_>> {
+    |                                                                 ++++
+
+warning: `termwiz` (lib) generated 1 warning (run `cargo fix --lib -p termwiz` to apply 1 suggestion)
+warning: hiding a lifetime that's elided elsewhere is confusing
+  --> wezterm-uds\src\lib.rs:72:18
+   |
+72 |     fn as_socket(&self) -> BorrowedSocket {
+   |                  ^^^^^     ^^^^^^^^^^^^^^ the same lifetime is hidden here
+   |                  |
+   |                  the lifetime is elided here
+   |
+   = help: the same lifetime is referred to in inconsistent ways, making the signature confusing
+   = note: `#[warn(mismatched_lifetime_syntaxes)]` on by default
+help: use `'_` for type paths
+   |
+72 |     fn as_socket(&self) -> BorrowedSocket<'_> {
+   |                                          ++++
+
+warning: hiding a lifetime that's elided elsewhere is confusing
+  --> async_ossl\src\lib.rs:45:18
+   |
+45 |     fn as_socket(&self) -> std::os::windows::io::BorrowedSocket {
+   |                  ^^^^^     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the same lifetime is hidden here
+   |                  |
+   |                  the lifetime is elided here
+   |
+   = help: the same lifetime is referred to in inconsistent ways, making the signature confusing
+   = note: `#[warn(mismatched_lifetime_syntaxes)]` on by default
+help: use `'_` for type paths
+   |
+45 |     fn as_socket(&self) -> std::os::windows::io::BorrowedSocket<'_> {
+   |                                                                ++++
+
+warning: `wezterm-uds` (lib) generated 1 warning (run `cargo fix --lib -p wezterm-uds` to apply 1 suggestion)
+warning: `async_ossl` (lib) generated 1 warning (run `cargo fix --lib -p async_ossl` to apply 1 suggestion)
+warning: hiding a lifetime that's elided elsewhere is confusing
+  --> procinfo\src\windows.rs:36:17
+   |
+36 |     pub fn iter(&self) -> ProcIter {
+   |                 ^^^^^     ^^^^^^^^ the same lifetime is hidden here
+   |                 |
+   |                 the lifetime is elided here
+   |
+   = help: the same lifetime is referred to in inconsistent ways, making the signature confusing
+   = note: `#[warn(mismatched_lifetime_syntaxes)]` on by default
+help: use `'_` for type paths
+   |
+36 |     pub fn iter(&self) -> ProcIter<'_> {
+   |                                   ++++
+
+warning: `procinfo` (lib) generated 1 warning (run `cargo fix --lib -p procinfo` to apply 1 suggestion)
+warning: use of deprecated method `dwrote::FontCollection::get_font_from_descriptor`: Use `font_from_descriptor` instead.
+   --> wezterm-font\src\locator\gdi.rs:185:27
+    |
+185 |     let font = collection.get_font_from_descriptor(&descriptor)?;
+    |                           ^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(deprecated)]` on by default
+
+warning: use of deprecated method `dwrote::FontFace::get_files`: Use `files` instead.
+   --> wezterm-font\src\locator\gdi.rs:187:22
+    |
+187 |     for file in face.get_files() {
+    |                      ^^^^^^^^^
+
+warning: use of deprecated method `dwrote::FontFile::get_font_file_path`: Use `font_file_path` instead.
+   --> wezterm-font\src\locator\gdi.rs:188:34
+    |
+188 |         if let Some(path) = file.get_font_file_path() {
+    |                                  ^^^^^^^^^^^^^^^^^^
+
+warning: use of deprecated method `dwrote::FontFamily::get_font`: Use `font` instead.
+   --> wezterm-font\src\locator\gdi.rs:370:35
+    |
+370 |                 let font = family.get_font(idx);
+    |                                   ^^^^^^^^
+
+warning: use of deprecated method `dwrote::FontFace::get_files`: Use `files` instead.
+   --> wezterm-font\src\locator\gdi.rs:372:34
+    |
+372 |                 for file in face.get_files() {
+    |                                  ^^^^^^^^^
+
+warning: use of deprecated method `dwrote::FontFile::get_font_file_path`: Use `font_file_path` instead.
+   --> wezterm-font\src\locator\gdi.rs:373:46
+    |
+373 |                     if let Some(path) = file.get_font_file_path() {
+    |                                              ^^^^^^^^^^^^^^^^^^
+
+warning: `wezterm-font` (lib) generated 6 warnings
+warning: hiding a lifetime that's elided elsewhere is confusing
+   --> wezterm-client\src\client.rs:581:18
+    |
+581 |     fn as_socket(&self) -> BorrowedSocket {
+    |                  ^^^^^     ^^^^^^^^^^^^^^ the same lifetime is hidden here
+    |                  |
+    |                  the lifetime is elided here
+    |
+    = help: the same lifetime is referred to in inconsistent ways, making the signature confusing
+    = note: `#[warn(mismatched_lifetime_syntaxes)]` on by default
+help: use `'_` for type paths
+    |
+581 |     fn as_socket(&self) -> BorrowedSocket<'_> {
+    |                                          ++++
+
+warning: `wezterm-client` (lib) generated 1 warning (run `cargo fix --lib -p wezterm-client` to apply 1 suggestion)
+warning: hiding a lifetime that's elided elsewhere is confusing
+   --> window\src\os\windows\window.rs:205:23
+    |
+205 |     fn display_handle(&self) -> Result<DisplayHandle, HandleError> {
+    |                       ^^^^^            ^^^^^^^^^^^^^ the same lifetime is hidden here
+    |                       |
+    |                       the lifetime is elided here
+    |
+    = help: the same lifetime is referred to in inconsistent ways, making the signature confusing
+    = note: `#[warn(mismatched_lifetime_syntaxes)]` on by default
+help: use `'_` for type paths
+    |
+205 |     fn display_handle(&self) -> Result<DisplayHandle<'_>, HandleError> {
+    |                                                     ++++
+
+warning: hiding a lifetime that's elided elsewhere is confusing
+   --> window\src\os\windows\window.rs:215:22
+    |
+215 |     fn window_handle(&self) -> Result<WindowHandle, HandleError> {
+    |                      ^^^^^            ^^^^^^^^^^^^ the same lifetime is hidden here
+    |                      |
+    |                      the lifetime is elided here
+    |
+    = help: the same lifetime is referred to in inconsistent ways, making the signature confusing
+help: use `'_` for type paths
+    |
+215 |     fn window_handle(&self) -> Result<WindowHandle<'_>, HandleError> {
+    |                                                   ++++
+
+warning: hiding a lifetime that's elided elsewhere is confusing
+   --> window\src\os\windows\window.rs:738:23
+    |
+738 |     fn display_handle(&self) -> Result<DisplayHandle, HandleError> {
+    |                       ^^^^^            ^^^^^^^^^^^^^ the same lifetime is hidden here
+    |                       |
+    |                       the lifetime is elided here
+    |
+    = help: the same lifetime is referred to in inconsistent ways, making the signature confusing
+help: use `'_` for type paths
+    |
+738 |     fn display_handle(&self) -> Result<DisplayHandle<'_>, HandleError> {
+    |                                                     ++++
+
+warning: hiding a lifetime that's elided elsewhere is confusing
+   --> window\src\os\windows\window.rs:748:22
+    |
+748 |     fn window_handle(&self) -> Result<WindowHandle, HandleError> {
+    |                      ^^^^^            ^^^^^^^^^^^^ the same lifetime is hidden here
+    |                      |
+    |                      the lifetime is elided here
+    |
+    = help: the same lifetime is referred to in inconsistent ways, making the signature confusing
+help: use `'_` for type paths
+    |
+748 |     fn window_handle(&self) -> Result<WindowHandle<'_>, HandleError> {
+    |                                                   ++++
+
+warning: `window` (lib) generated 4 warnings (run `cargo fix --lib -p window` to apply 4 suggestions)
+   Compiling wezterm-gui v0.1.0 (G:\ccc\z_terminals\w111erd\zrepos\wezterm-official-git\wezterm-gui)
+warning: value assigned to `phys_cell_idx` is never read
+   --> wezterm-gui\src\termwindow\render\screen_line.rs:677:17
+    |
+677 |                 phys_cell_idx += info.pos.num_cells as usize;
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: maybe it is overwritten before being read?
+    = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+warning: `wezterm-gui` (bin "wezterm-gui") generated 1 warning
+    Finished `release` profile [optimized] target(s) in 1m 03s

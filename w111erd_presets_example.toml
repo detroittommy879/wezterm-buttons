@@ -1,0 +1,31 @@
+# W111erd Presets Configuration
+# Place this file in your wezterm config directory:
+#   Windows: %APPDATA%\wezterm\w111erd_presets.toml
+#   Linux/Mac: ~/.config/wezterm/w111erd_presets.toml
+
+# Preset buttons for the left dock
+# Each button will send its command when clicked
+[[preset_buttons]]
+label = "server-amp"
+command = "ssh -i C:\\Users\\Basic\\.ssh\\oracle-amp.key ubuntu@193.122.157.24\r"
+
+[[preset_buttons]]
+label = "server-backwuu"
+command = "ssh -i C:\\Users\\Basic\\.ssh\\oracle-050525backwuu.key ubuntu@129.213.87.157\r"
+
+[[preset_buttons]]
+label = "tail access"
+command = "tail -f /var/log/apache2/access.log\r"
+
+[[preset_buttons]]
+label = "apt update"
+command = "sudo apt update && sudo apt upgrade -y\r"
+
+[[preset_buttons]]
+label = "PWD"
+command = "pwd\r"
+
+# Top bar button labels (up to 6 buttons)
+# Fixed order: New Tab, Split H, Split V, Auto, Launcher, Quick Select
+# Leave empty to use defaults: [ "New Tab", "Split H", "Split V", "Auto", "Launcher", "Quick Select" ]
+top_bar_buttons = []

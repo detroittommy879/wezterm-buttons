@@ -1,0 +1,22 @@
+# W111erd Gradient Configuration
+# Place this file in your wezterm config directory:
+#   Windows: %APPDATA%\wezterm\w111erd_gradient.toml
+#   Linux/Mac: ~/.config/wezterm/w111erd_gradient.toml
+
+[gradient]
+# Gradient colors as hex values
+colors = [
+    "#09131f",
+    "#12324a",
+    "#2f647d",
+    "#8f5b2f",
+]
+
+# Angle for linear gradient in degrees
+angle = -35.0
+
+# Interpolation mode: Basis, Linear, or CatmullRom
+interpolation = "Basis"
+
+# Blend mode: Oklab, Rgb, LinearRgb, or Hsv
+blend = "Oklab"
