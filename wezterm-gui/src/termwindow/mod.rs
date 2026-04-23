@@ -183,7 +183,8 @@ pub enum UIItemType {
 impl TermWindow {
     pub fn top_bar_pixel_height_impl(render_metrics: &RenderMetrics) -> f32 {
         if CUSTOM_TOP_BAR_ENABLED {
-            (render_metrics.cell_size.height as f32 * 1.4).ceil()
+            let scale = config::w111erd_config::w111erd_panel_font_scale();
+            (render_metrics.cell_size.height as f32 * 1.4 * scale).ceil()
         } else {
             0.0
         }
@@ -195,7 +196,8 @@ impl TermWindow {
 
     pub fn left_dock_pixel_width_impl(render_metrics: &RenderMetrics) -> f32 {
         if CUSTOM_LEFT_DOCK_ENABLED {
-            (render_metrics.cell_size.width as f32 * 11.0).ceil()
+            let scale = config::w111erd_config::w111erd_panel_font_scale();
+            (render_metrics.cell_size.width as f32 * 11.0 * scale).ceil()
         } else {
             0.0
         }

@@ -455,6 +455,7 @@ impl FallbackResolveInfo {
 #[derive(PartialEq, Eq)]
 enum Entity {
     Title,
+    Panel,
     CommandPalette,
     CharSelect,
     PaneSelect,
@@ -470,6 +471,7 @@ struct FontConfigInner {
     font_dirs: RefCell<Arc<FontDatabase>>,
     built_in: RefCell<Arc<FontDatabase>>,
     title_font: RefCell<Option<Rc<LoadedFont>>>,
+    panel_font: RefCell<Option<Rc<LoadedFont>>>,
     pane_select_font: RefCell<Option<Rc<LoadedFont>>>,
     char_select_font: RefCell<Option<Rc<LoadedFont>>>,
     command_palette_font: RefCell<Option<Rc<LoadedFont>>>,
@@ -491,6 +493,7 @@ impl FontConfigInner {
             locator,
             metrics: RefCell::new(None),
             title_font: RefCell::new(None),
+            panel_font: RefCell::new(None),
             pane_select_font: RefCell::new(None),
             char_select_font: RefCell::new(None),
             command_palette_font: RefCell::new(None),
@@ -509,6 +512,7 @@ impl FontConfigInner {
         // Config was reloaded, invalidate our caches
         fonts.clear();
         self.title_font.borrow_mut().take();
+        self.panel_font.borrow_mut().take();
         self.pane_select_font.borrow_mut().take();
         self.char_select_font.borrow_mut().take();
         self.command_palette_font.borrow_mut().take();
@@ -603,6 +607,14 @@ impl FontConfigInner {
 
         let (font_size, text_style) = match entity {
             Entity::Title => (config.window_frame.font_size.unwrap_or(sys_size), None),
+            Entity::Panel => {
+                // Use TOML panel_font_size if set, otherwise fall back to window_frame.font_size,
+                // then the system default.
+                let size = config::w111erd_config::w111erd_panel_font_size()
+                    .or(config.window_frame.font_size)
+                    .unwrap_or(sys_size);
+                (size, None)
+            }
             Entity::CommandPalette => (
                 config.command_palette_font_size,
                 config.command_palette_font.as_ref(),
@@ -663,6 +675,22 @@ impl FontConfigInner {
         let loaded = self.make_entity_font_impl(myself, Entity::Title)?;
 
         title_font.replace(Rc::clone(&loaded));
+
+        Ok(loaded)
+    }
+
+    /// Returns the font for the custom panel UI (left dock / top bar).
+    /// Uses TOML panel_font_size if configured, otherwise same as title_font.
+    fn panel_font(&self, myself: &Rc<Self>) -> anyhow::Result<Rc<LoadedFont>> {
+        let mut panel_font = self.panel_font.borrow_mut();
+
+        if let Some(entry) = panel_font.as_ref() {
+            return Ok(Rc::clone(entry));
+        }
+
+        let loaded = self.make_entity_font_impl(myself, Entity::Panel)?;
+
+        panel_font.replace(Rc::clone(&loaded));
 
         Ok(loaded)
     }
@@ -955,6 +983,7 @@ impl FontConfigInner {
         self.fonts.borrow_mut().clear();
         self.metrics.borrow_mut().take();
         self.title_font.borrow_mut().take();
+        self.panel_font.borrow_mut().take();
 
         (prior_font, prior_dpi)
     }
@@ -1065,6 +1094,12 @@ impl FontConfiguration {
 
     pub fn title_font(&self) -> anyhow::Result<Rc<LoadedFont>> {
         self.inner.title_font(&self.inner)
+    }
+
+    /// Returns the font for the custom panel UI (left dock / top bar).
+    /// Uses TOML panel_font_size if configured, otherwise same as title_font.
+    pub fn panel_font(&self) -> anyhow::Result<Rc<LoadedFont>> {
+        self.inner.panel_font(&self.inner)
     }
 
     pub fn command_palette_font(&self) -> anyhow::Result<Rc<LoadedFont>> {

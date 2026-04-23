@@ -89,7 +89,7 @@ impl crate::TermWindow {
         }
 
         let palette = self.palette().clone();
-        let title_font = self.fonts.title_font()?;
+        let title_font = self.fonts.panel_font()?;
         let metrics = crate::utilsprites::RenderMetrics::with_font_metrics(&title_font.metrics());
         let border = self.get_os_border();
         let top = self.top_chrome_pixel_height() + border.top.get() as f32;

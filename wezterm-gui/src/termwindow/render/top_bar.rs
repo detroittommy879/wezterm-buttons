@@ -161,7 +161,7 @@ impl crate::TermWindow {
 
         let top_bar_y = self.top_bar_pixel_y();
         let palette = self.palette().clone();
-        let title_font = self.fonts.title_font()?;
+        let title_font = self.fonts.panel_font()?;
         let metrics = crate::utilsprites::RenderMetrics::with_font_metrics(&title_font.metrics());
         let colors = self
             .config

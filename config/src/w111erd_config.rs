@@ -13,6 +13,9 @@ pub struct PresetButtonToml {
 pub struct W111erdPresetsToml {
     pub preset_buttons: Option<Vec<PresetButtonToml>>,
     pub top_bar_buttons: Option<Vec<String>>,
+    /// Font size for the left dock and top bar panels (in points).
+    /// Defaults to 10 on Windows. Increase to make panel text and buttons larger.
+    pub panel_font_size: Option<f64>,
 }
 
 /// Reload presets from TOML files. Call this when presets may have changed.
@@ -145,4 +148,20 @@ pub fn w111erd_top_bar_buttons() -> Vec<String> {
     get_w111erd_presets()
         .and_then(|p| p.top_bar_buttons)
         .unwrap_or_default()
+}
+
+/// Default panel font size (points on Windows) used when none is configured
+pub const DEFAULT_PANEL_FONT_SIZE: f64 = 10.0;
+
+/// Returns the configured panel font size, or None if not set in TOML
+pub fn w111erd_panel_font_size() -> Option<f64> {
+    get_w111erd_presets().and_then(|p| p.panel_font_size)
+}
+
+/// Returns the scale factor relative to DEFAULT_PANEL_FONT_SIZE.
+/// For example: panel_font_size = 14 → scale = 1.4
+pub fn w111erd_panel_font_scale() -> f32 {
+    w111erd_panel_font_size()
+        .map(|size| (size / DEFAULT_PANEL_FONT_SIZE) as f32)
+        .unwrap_or(1.0)
 }

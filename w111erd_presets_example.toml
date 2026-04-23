@@ -29,3 +29,8 @@ command = "pwd\r"
 # Fixed order: New Tab, Split H, Split V, Auto, Launcher, Quick Select
 # Leave empty to use defaults: [ "New Tab", "Split H", "Split V", "Auto", "Launcher", "Quick Select" ]
 top_bar_buttons = []
+
+# Panel font size in points (default: 10 on Windows).
+# Increase to make panel text bigger and buttons taller/wider.
+# Example: 14 makes panels ~40% larger than default.
+# panel_font_size = 14
